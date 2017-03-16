@@ -1,0 +1,4 @@
+interval.seconds: 5
+quote.baseurl: http://finance.google.com/finance/info
+logging:
+    level.com.paulsrusso: DEBUG
