@@ -9,7 +9,7 @@ git clone https://github.com/PaulSRusso/reactive-quotes.git
 cd ./reactive-quotes
 ./gradlew bootrun
 ```
-In a separate terminal
+### In a separate terminal, pull the quotes
 ```ShellSession
 curl http://localhost:8080/quotes/QQQ
 ```
@@ -24,7 +24,6 @@ public class QuoteController {
 
    @Value("${interval.seconds}")
    private Integer _seconds;
-
    
    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/quotes/{ticker}" )
    Flux<IntradayQuote> quotes(
@@ -39,9 +38,7 @@ public class QuoteController {
 
       // merge the Fluxes into a single Flux and return it  
       retval = Flux.zip(quotes, durationFlux).map(Tuple2::getT1);
-     
    }
-
 ```
 
 
