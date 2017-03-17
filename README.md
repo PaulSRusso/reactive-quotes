@@ -9,7 +9,7 @@ git clone https://github.com/PaulSRusso/reactive-quotes.git
 cd ./reactive-quotes
 ./gradlew bootrun
 ```
-### In a separate terminal, pull the quotes
+### In a separate terminal, stream quotes
 ```ShellSession
 curl http://localhost:8080/quotes/QQQ
 ```
