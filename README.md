@@ -6,7 +6,7 @@ This project uses the [Spring Boot Reactive WebFlux Framework](http://docs.sprin
 ### Commands
 ```ShellSession
 git clone https://github.com/PaulSRusso/reactive-quotes.git  
-cd reactive-reactive
+cd ./reactive-quotes
 ./gradlew bootrun
 ```
 In a separate terminal
