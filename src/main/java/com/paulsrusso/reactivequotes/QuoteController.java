@@ -33,13 +33,17 @@ public class QuoteController {
    Flux<IntradayQuote> quotes(
          @PathVariable String ticker) {
     
+      // create two Fluxes; one for the quotes and one for the duration 
       Flux<IntradayQuote> retval = null;
       Flux<Long> durationFlux = Flux.interval(Duration.ofSeconds(_seconds));
+
+      // generate a Stream from a List and turn it into a FLux
       Flux<IntradayQuote> quotes = Flux.fromStream(Stream.generate(() -> _quoteService.collect(ticker)));
+
+      // merge the Fluxes into a single Flux and return it  
       retval = Flux.zip(quotes, durationFlux).map(Tuple2::getT1);
-     
+
       return retval;
-      
    }
 
 }

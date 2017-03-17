@@ -56,7 +56,8 @@ public class QuoteService {
             }
          }
       } catch (Exception e) {
-         e.printStackTrace();
+         retval = new IntradayQuote();
+         retval.setTicker("NOT FOUND");
          log.error(e.toString());
       }
       return retval;
