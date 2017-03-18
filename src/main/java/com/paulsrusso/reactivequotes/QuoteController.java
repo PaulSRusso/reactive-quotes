@@ -30,19 +30,6 @@ public class QuoteController {
    @Value("${interval.seconds}")
    private Integer _seconds;
 
-   @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/asynctimeout" )
-   Flux<IntradayQuote> quotesTest() {
-      Flux<IntradayQuote> retval = null;
-      // create two Fluxes; one for the quotes and one for the duration 
-      Flux<Long> durationFlux = Flux.interval(Duration.ofSeconds(_seconds));
-      List<IntradayQuote> quotes = new ArrayList<>();
-      quotes.add(new IntradayQuote());
-      Flux<IntradayQuote> quoteFlux = Flux.fromStream(quotes.stream());
-      // merge the Fluxes into a single Flux and return it  
-      retval = Flux.zip(quoteFlux, durationFlux).map(Tuple2::getT1);
-      return retval;
-   }
-   
    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/quotes/{ticker}" )
    Flux<IntradayQuote> quotes(
          @PathVariable String ticker) {
