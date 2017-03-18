@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compile('org.apache.tomcat.embed:tomcat-embed-core')
+//`	compile('org.apache.tomcat.embed:tomcat-embed-core')
+        compile('io.undertow:undertow-core')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
