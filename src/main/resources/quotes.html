@@ -1,0 +1,23 @@
+<html>
+
+<pre id="res">res</pre>
+
+<script src="https://unpkg.com/@reactivex/rxjs@5.0.1/dist/global/Rx.js"></script>
+<script type="application/javascript">
+
+const posts$ = Rx.Observable
+  .ajax('./quote/QQQ')
+//  .ajax('http://localhost:8080/quote/QQQ')
+  .map(e => e.response);
+
+const resNode = document.getElementById('res');
+
+const htmlSubscription = posts$
+  .subscribe(res => {
+    resNode.innerHTML = JSON.stringify(res, null, 2);
+  });
+</script>
+<pre id="resNode"></pre>
+
+
+</html>

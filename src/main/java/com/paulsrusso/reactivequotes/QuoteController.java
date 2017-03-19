@@ -1,8 +1,6 @@
 package com.paulsrusso.reactivequotes;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.paulsrusso.reactivequotes.model.IntradayQuote;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
 /**
@@ -30,8 +29,17 @@ public class QuoteController {
    @Value("${interval.seconds}")
    private Integer _seconds;
 
+   
+   @GetMapping(value = "/quote/{ticker}" )
+   Mono<IntradayQuote> quotesSingle(
+         @PathVariable String ticker) {
+    
+      Mono<IntradayQuote> retval = Mono.just(_quoteService.collect(ticker));
+      return retval;
+   }
+
    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/quotes/{ticker}" )
-   Flux<IntradayQuote> quotes(
+   Flux<IntradayQuote> quotesStream(
          @PathVariable String ticker) {
     
       // create two Fluxes; one for the quotes and one for the duration 
