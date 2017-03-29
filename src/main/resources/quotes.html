@@ -7,7 +7,6 @@
 
 const posts$ = Rx.Observable
   .ajax('./quote/QQQ')
-//  .ajax('http://localhost:8080/quote/QQQ')
   .map(e => e.response);
 
 const resNode = document.getElementById('res');
