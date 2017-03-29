@@ -55,4 +55,11 @@ public class IntradayQuoteIn {
       return intradayQuote;
    }
 
+   @Override
+   public String toString() {
+      return "IntradayQuoteIn [intradayQuote=" + intradayQuote + ", ticker="
+            + ticker + ", last=" + last + ", time=" + time + ", change="
+            + change + ", pctChange=" + pctChange + "]";
+   }
+
 }
