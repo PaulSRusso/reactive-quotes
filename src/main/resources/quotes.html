@@ -6,7 +6,7 @@
 <script type="application/javascript">
 
 const posts$ = Rx.Observable
-  .ajax('./quote/QQQ')
+  .ajax('./quotes/QQQ')
   .map(e => e.response);
 
 const resNode = document.getElementById('res');

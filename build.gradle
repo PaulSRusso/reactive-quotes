@@ -1,15 +1,15 @@
 buildscript {
-        ext {
-                springBootVersion = '2.0.0.BUILD-SNAPSHOT'
-        }
-        repositories {
-                mavenCentral()
-                maven { url "https://repo.spring.io/snapshot" }
-                maven { url "https://repo.spring.io/milestone" }
-        }
-        dependencies {
-                classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        }
+ext {
+   springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+}
+repositories {
+   mavenCentral()
+   maven { url "https://repo.spring.io/snapshot" }
+   maven { url "https://repo.spring.io/milestone" }
+}
+dependencies {
+   classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+}
 }
 
 apply plugin: 'java'
@@ -18,25 +18,27 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
 
 jar {
-        baseName = 'reactive-quotes'
-        version = '0.0.1-SNAPSHOT'
+   mainClassName = "com.paulsrusso.reactivequotes.Application"
+   baseName = 'reactive-quotes'
+   version = '0.0.1-SNAPSHOT'
 }
 
 sourceCompatibility = 1.8
 
 repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
+   mavenCentral()
+   maven { url "https://repo.spring.io/snapshot" }
+   maven { url "https://repo.spring.io/milestone" }
 }
 
-applicationDefaultJvmArgs = [
-    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1234"
-]
+//applicationDefaultJvmArgs = [
+//    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1234"
+//]
+
 
 dependencies {
-     compile('org.springframework.boot:spring-boot-starter-webflux')
-     //compile('org.apache.tomcat.embed:tomcat-embed-core') //async timeouts occur
-     compile('io.undertow:undertow-core')
-     testCompile('org.springframework.boot:spring-boot-starter-test')
+   compile("org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}")
+   testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+  // compile('org.apache.tomcat.embed:tomcat-embed-core') //async timeouts occur
+   compile('io.undertow:undertow-core:1.4.11.Final')
 }

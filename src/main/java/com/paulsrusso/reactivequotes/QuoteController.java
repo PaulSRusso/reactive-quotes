@@ -30,7 +30,7 @@ public class QuoteController {
    private Integer _seconds;
 
    
-   @GetMapping(value = "/quote/{ticker}" )
+   @GetMapping(value = "/quotes/{ticker}" )
    Mono<IntradayQuote> quotesSingle(
          @PathVariable String ticker) {
     
@@ -38,7 +38,7 @@ public class QuoteController {
       return retval;
    }
 
-   @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/quotes/{ticker}" )
+   @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/quotes/{ticker}/stream" )
    Flux<IntradayQuote> quotesStream(
          @PathVariable String ticker) {
     
