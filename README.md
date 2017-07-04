@@ -11,6 +11,7 @@ cd ./reactive-quotes
 ```
 ### In a separate terminal, stream quotes
 ```ShellSession
+curl http://localhost:8080/quotes/QQQ/stream
 curl http://localhost:8080/quotes/QQQ
 ```
 
